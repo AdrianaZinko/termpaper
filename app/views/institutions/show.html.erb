@@ -1,0 +1,109 @@
+<button class="button button-cart" id="cart-button">
+    Cart 
+</button>
+<h3>All</h3>
+<% @institution.menus.each do |institution| %>
+<div class="alert alert-light">
+<div class="card">
+<p class="photo"><%= institution.photo %></p>
+<p class="name"><%= institution.name %></p>
+<p class="description"><%= institution.description %></p>
+<p class="weight"><%= institution.weight %></p>
+<div>
+<button class="btn btn-warning buttons">button</button>
+<p class="price"><%= institution.price %></p>
+</div>
+</div>
+</div>
+<% end %>
+<br><br>
+<div class="adr"></div>
+<br><br>
+<h2>Добавление новых постов:</h2>
+<%= form_for([@institution, @institution.menus.build]) do |f| %>
+<p>
+    Название <br>
+    <%= f.text_field(:name, {:class=> 'form-control'}) %>
+</p>
+<p>
+    Weight<br>
+    <%= f.text_field(:weight, {:class=> 'form-control'}) %>
+</p>
+<p>
+    price <br>
+    <%= f.text_field(:price, {:class=> 'form-control'}) %>
+</p>
+<p>
+    photo<br>
+    <%= f.text_field(:photo, {:class=> 'form-control'}) %>
+</p>
+<p>
+    description <br>
+    <%= f.text_field(:description, {:class=> 'form-control'}) %>
+</p>
+
+<%= f.submit("Add",{:class=> 'btn btn-warning'}) %>
+</p>
+<% end %>
+
+<div class="modal modal-cart">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h3 class="modal-title">Корзина</h3>
+            <button class="close">&times;</button>
+        </div>
+        <!-- /.modal-header -->
+        <div class="modal-body">
+            <div class="food-row">
+                <span class="food-name">Ролл угорь стандарт</span>
+                <strong class="food-price">250 ₽</strong>
+                <div class="food-counter">
+                    <button class="counter-button">-</button>
+                    <span class="counter">1</span>
+                    <button class="counter-button">+</button>
+                </div>
+            </div>
+            <!-- /.foods-row -->
+            <div class="food-row">
+                <span class="food-name">Ролл угорь стандарт</span>
+                <strong class="food-price">250 ₽</strong>
+                <div class="food-counter">
+                    <button class="counter-button">-</button>
+                    <span class="counter">1</span>
+                    <button class="counter-button">+</button>
+                </div>
+            </div>
+            <!-- /.foods-row -->
+            <div class="food-row">
+                <span class="food-name">Ролл угорь стандарт</span>
+                <strong class="food-price">250 ₽</strong>
+                <div class="food-counter">
+                    <button class="counter-button">-</button>
+                    <span class="counter">1</span>
+                    <button class="counter-button">+</button>
+                </div>
+            </div>
+            <!-- /.foods-row -->
+            <div class="food-row">
+                <span class="food-name">Ролл угорь стандарт</span>
+                <strong class="food-price">250 ₽</strong>
+                <div class="food-counter">
+                    <button class="counter-button">-</button>
+                    <span class="counter">1</span>
+                    <button class="counter-button">+</button>
+                </div>
+            </div>
+            <!-- /.foods-row -->
+        </div>
+        <!-- /.modal-body -->
+        <div class="modal-footer">
+            <span class="modal-pricetag">1250 ₽</span>
+            <div class="footer-buttons">
+                <button class="button button-primary">Оформить заказ</button>
+                <button class="button clear-cart">Отмена</button>
+            </div>
+        </div>
+        <!-- /.modal-footer -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,15 @@
+<h2>Добавление новых постов:</h2>
+<%= form_for :users, url: users_path do |f| %>
+    <p>
+    Название <br>
+     <%= f.text_field(:name, {:class=> 'form-control'}) %>
+    </p>
+    <p>
+    phone<br>
+     <%= f.text_field(:phone, {:class=> 'form-control'}) %>
+    </p>
+    <p>
+    
+     <%= f.submit({:class=> 'btn btn-success'}) %>
+    </p>
+<% end %>

@@ -1,0 +1,26 @@
+<h2>Добавление новых постов:</h2>
+<%= form_for :institutions, url: institutions_path do |f| %>
+    <p>
+    Название <br>
+     <%= f.text_field(:title, {:class=> 'form-control'}) %>
+    </p>
+    <p>
+    Type dishes <br>
+     <%= f.text_field(:type_dishes, {:class=> 'form-control'}) %>
+    </p>
+    <p>
+Photo <br>
+     <%= f.text_field(:photo, {:class=> 'form-control'}) %>
+    </p>
+    <p>
+    clock_start <br>
+     <%= f.text_field(:clock_start, {:class=> 'form-control'}) %>
+    </p>
+    <p>
+    clock_end <br>
+     <%= f.text_field(:clock_end, {:class=> 'form-control'}) %>
+    </p>
+    
+     <%= f.submit({:class=> 'btn btn-success'}) %>
+    </p>
+<% end %>

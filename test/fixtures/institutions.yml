@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  type_dishes: MyString
+  photo: MyString
+  clock_start: 2021-06-24 13:43:17
+  clock_end: 2021-06-24 13:43:17
+
+two:
+  title: MyString
+  type_dishes: MyString
+  photo: MyString
+  clock_start: 2021-06-24 13:43:17
+  clock_end: 2021-06-24 13:43:17

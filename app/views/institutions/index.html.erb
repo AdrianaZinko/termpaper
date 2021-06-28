@@ -1,0 +1,12 @@
+<h3>fffffffffffff</h3>
+<% @institution.each do |institution| %>
+    <div class="alert alert-light">
+<p><%= institution.title %></p>
+<p><%= institution.type_dishes %></p>
+<p><%= institution.photo %></p>
+<p><%= institution.clock_start %></p>
+<p><%= institution.clock_end %></p>
+<%= link_to "Read more",institution_path(institution), :class => 'btn btn-default' %>
+<br><br> <br>
+</div>
+<% end %>
