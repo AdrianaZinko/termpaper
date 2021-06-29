@@ -4,7 +4,7 @@ class CreateInstitutions < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :type_dishes
       t.string :photo
-      t.datetime :clock_start
+      t.datetime :strftime('%s',clock_start)
       t.datetime :clock_end
 
       t.timestamps

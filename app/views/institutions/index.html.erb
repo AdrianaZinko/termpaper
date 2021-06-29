@@ -1,5 +1,5 @@
-<h3>fffffffffffff</h3>
-<% @institution.each do |institution| %>
+<h3>Меню</h3>
+<!-- <% @institution.each do |institution| %>
     <div class="alert alert-light">
 <p><%= institution.title %></p>
 <p><%= institution.type_dishes %></p>
@@ -9,4 +9,22 @@
 <%= link_to "Read more",institution_path(institution), :class => 'btn btn-default' %>
 <br><br> <br>
 </div>
+<% end %>-->
+<div class="row">
+<% @institution.each do |institution| %>
+   <div class="col-md-4">
+    <div class="card mb-4 shadow-sm">
+    <img src= <%= institution.photo %> />
+    <div class="card-body">
+    <p class="title"><%= institution.title %></p> 
+    <div>
+    <span class="clock"><%= institution.clock_start %></span> -
+    <span class="clock"><%= institution.clock_end %></span>
+    </div>
+    <%= link_to "Read more ",institution_path(institution), :class => 'btn btn-menu ' %>
+    
+    </div>
+    </div>
+   </div>
 <% end %>
+</div>

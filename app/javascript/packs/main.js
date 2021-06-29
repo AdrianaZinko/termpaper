@@ -1,104 +1,103 @@
-document.addEventListener('DOMContentLoaded',function(event){
-const cartButton = document.querySelector("#cart-button")//
-const modal = document.querySelector(".modal");
-const close = document.querySelector(".close");
-const buttonAuth = document.querySelector('.button-auth');
-const modalAuth = document.querySelector('.modal-auth');
-const closeAuth = document.querySelector('.close-auth');
-const logInForm = document.querySelector('#logInForm');
-const loginInput = document.querySelector('#login');
-const userName = document.querySelector('.user-name');
-const buttonOut = document.querySelector('.button-out');
-const cardsRestaurans = document.querySelector('.cards-restaurants');
-const containerPromo = document.querySelector('.container-promo');
-const restaurants = document.querySelector('.restaurants');
-const menu = document.querySelector('.menu');
-const logo = document.querySelector('.logo');
-const cardsMenu = document.querySelector('.cards-menu');
-const modalBody = document.querySelector('.modal-body');
-const modalPrice = document.querySelector('.modal-pricetag');
-const clear = document.querySelector('.clear-cart');
+document.addEventListener('DOMContentLoaded', function (event) {
+ 
+const btn = document.querySelectorAll('.buttons')
 const adr= document.querySelector('.adr')
-let ss= document.querySelector('.ss')
-let login = localStorage.getItem('gloDelivery');
-let ee=`${adr}`
-const cart = [];
-
-console.log("ss")
-function toggleModal() {
-  modal.classList.toggle("is-open");
-}
-
-function renderCart() {
-  modalBody.textContent = '';
-  cart.forEach(function ({
-    id,
-    title,
-    count
-  }) {
-    const itemCart = `
-   <div class="food-row">
-					<span class="food-name">${title}</span>
-					<strong class="food-price">250 ₽</strong>
-					<div class="food-counter">
-						<button class="counter-button counter-minus" data-id=${id}>-</button>
-						<span class="counter">${count}</span>
-						<button class="counter-button counter-plus" data-id=${id}>+</button>
-					</div>
-				</div>
-   `;
-    modalBody.insertAdjacentHTML("afterbegin", itemCart);
-  });
-  const totalPrice = cart.reduce(function (result, item) {
-    return result + 1; //(parseFloat(item.cost))*item.count;
-  }, 0);
-  //modalPrice.textContent=modalPrice;
-}
-
-function init() {
-
-  cartButton.addEventListener("click", function () {
-    renderCart();
-    toggleModal();
-
-  });
-
-}
-init()
-console.log("ss")
-close.addEventListener("click", toggleModal);
-const btn= document.querySelectorAll('.buttons') 
-btn.forEach(e=>{
-  e.addEventListener('click',(ev)=>{
+const tbody=document.querySelector('.tbody')
+const modalBtn=document.querySelector('.btn-cart')
+const clocks =document.querySelectorAll('.clock')
+let k=0 ,date=''
+for (let clock of clocks) {
+  console.log(clock.innerHTML.slice(11,16));
+date=clock.innerText.slice(11, 16)
+clock.innerHTML=date
+} 
+btn.forEach(e => {
+  e.addEventListener('click', (ev) => {
     //e.style.visibility="hidden"
-    const parent=e.closest('.card')
-    const photo=parent.querySelector('.photo').innerText
-    const name=parent.querySelector('.name').innerText
-    const description=parent.querySelector('.description').innerText
-    const weight=parent.querySelector('.weight').innerText
-    const price=parent.querySelector('.price').innerText
-    console.log(parent)
-    console.log(photo+" "+ name+' '+description+' '+weight+' '+price)
-    const itemCart = `
-   <div class="food-row">
-					<span class="food-name">${name}</span>
-					<strong class="food-price">250 ₽</strong>
-					<div class="food-counter">
-						${photo}
-					</div>
-				</div>
-   `;
-   
-    adr.insertAdjacentHTML("afterbegin", itemCart);
-    ee=`${adr.outerHTML}`
-    console.log(ee)
-    ss.insertAdjacentHTML("afterbegin", ee);
-  })
+    const parent = e.closest('.card')
+    //const photo = parent.querySelector('.photo').innerText
+    const name = parent.querySelector('.name').innerText
+    const description = parent.querySelector('.description').innerText
+    const weight = parent.querySelector('.weight').innerText
+    const price = parent.querySelector('.price').innerText
   
-  console.log(ee+ "g")
+   
+    k++;
+    const itemCart2 = `
+    <tr class="basket__item">
+    <td class="align-middle">${name}</td>
+    <td class="align-middle price text-end">${price} руб</td>
+    <td class="align-middle count">
+      <div class="input-group">
+        <button type="button" class="btn btn-primary btn-minus">-</button>
+        <input type="number" value="${k}" data-price="${price}" class="form-control input text-center" disabled>
+        <button type="button" class="btn btn-primary btn-plus">+</button>
+      </div>
+    </td>
+    <td class="align-middle text-end subtotal">${price} руб</td>
+  </tr>
+     `;
+
+    tbody.insertAdjacentHTML("afterbegin", itemCart2);
+    
+    k=0
+  })
+
+})
+
+const formatNumber = (x) =>
+  x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ' ')
+
+const totalPriceWrapper = document.getElementById('total-price')
+
+const getItemSubTotalPrice = (input) => +input.value * +input.dataset.price
+
+const setTotalPrice=(value)=>{
+    totalPriceWrapper.textContent = formatNumber(value)
+  totalPriceWrapper.dataset.value=value
+}
+
+const init = () => {
+  let totalCost = 0
+  document.querySelectorAll('.basket__item').forEach((basketItem) => {
+    totalCost += getItemSubTotalPrice(basketItem.querySelector('.input'))
+  })
+   setTotalPrice(totalCost)
+}
+
+const calculateSeparateItem = (basketItem, action) => {
+    const input=basketItem.querySelector('.input')
+    switch(action){
+        case 'plus':
+            input.value++
+            setTotalPrice(+totalPriceWrapper.dataset.value + +input.dataset.price)
+            break;
+        case 'minus':
+            input.value--
+            setTotalPrice(+totalPriceWrapper.dataset.value - +input.dataset.price)
+            break;
+    }
+    basketItem.querySelector('.subtotal').textContent=`${formatNumber(getItemSubTotalPrice(input))} руб`
+}
+
+document.getElementById('basket').addEventListener('click', (event) => {
+  if (event.target.classList.contains('btn-minus')) {
+      const input = event.target.closest('.basket__item').querySelector('.input')
+    if(+input.value!==0){
+        calculateSeparateItem(event.target.closest('.basket__item'), 'minus')
+    }
+  }
+  if (event.target.classList.contains('btn-plus')) {
+    calculateSeparateItem(event.target.closest('.basket__item'), 'plus')
+  }
+})
+
+init()
 })
 
 
-})
-
+modalBtn.addEventListener('click', () => {
+  console.log('fd')
+  adr.classList.toggle('is-open')
+  })
 
