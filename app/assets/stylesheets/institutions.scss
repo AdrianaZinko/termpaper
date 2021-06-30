@@ -1,28 +1,15 @@
+$primary-color: #3aa1e5;
+$accent-color: #6a1b9a;
 body{
     color: #a1a1a1;
 font-size: 15px;
 line-height: 28px;
 }
-.adr{
-    width: 100%;
-    min-height: 400px;
-    height: 50%;
-    background-color: aqua;
-    color: #fff;
-    visibility: hidden;
-    position: fixed;
-    top: 50%;
-    right: 0;
-    left: 0;
-    transform: translateY(-50%);
-    margin: 0 auto;
+
+a{
+    text-decoration: none;
 }
 
-
-
-.adr.is-open{
-    visibility: visible;
-}
 
 /*menu*/
 .description{
@@ -30,7 +17,7 @@ line-height: 28px;
     height: 100%;
 }
 .name{
-    color: #8ae53a; 
+    color: $primary-color; 
     font-weight: 700;
     font-size: 17px;
 }
@@ -38,20 +25,23 @@ line-height: 28px;
     color: #797878;
 }
 .price{
-    color: #8ae53a; 
+    color: $primary-color; 
     font-weight: 700;
     font-size: 17px;
+    &::after{
+        content: " грн";
+    }
 }
 
 .buttons{
-    background-color: #8ae53a; 
+    background-color: $primary-color; 
     border-radius: 50%;
     color: #fff;
     transition: all 0.3s linear;
     &:hover{
-        color: #8ae53a;
+        color: $primary-color;
      background-color: #fff;
-     border: solid 1px #8ae53a;
+     border: solid 1px $primary-color;
      }
 }
 
@@ -64,20 +54,67 @@ line-height: 28px;
     width: 150px;
     height: 50px;
     z-index: 10;
-    background-color: #8ae53a;
+    background-color: $primary-color;
     color: #fff;
     border: none;
     transition: all 0.3s linear;
     &:hover{
-       color: #8ae53a;
+       color: $primary-color;
     background-color: #fff;
+    }
+}
+
+.adr{
+    width: 100%;
+    min-height: 400px;
+    height: 100%;
+    background-color: #fff; 
+    visibility: hidden;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    right: 0;
+    left: 0;
+    justify-content: center;
+    transform: translateY(-50%);
+    margin: 0 auto;
+}
+
+
+
+.adr.is-open{
+    visibility: visible;
+}
+
+.order{
+    display: none;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(223, 207, 207);
+    position: fixed; 
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.order.is-open{
+    display: block;
+}
+
+.btn-order{
+    background-color: $primary-color;
+    color: #fff;
+    &::after{
+        content: "\2192";
     }
 }
 
 /*institutions*/
 .btn-menu{
     width: 100%;
-    background-color: #8ae53a;
+    background-color: $primary-color;
     color: #fff;
     &::after{
         content: "\2192";
@@ -89,3 +126,98 @@ line-height: 28px;
     font-weight: 700;
     font-size: 19px;
 }
+
+.item-link{
+    font-weight: 700;
+    font-size: 19px;
+    color: inherit;
+    &:hover{
+        text-decoration: underline;
+        color: $primary-color;
+    }
+}
+
+.item-link.logo{
+    color: rgb(43, 42, 42);
+   
+    padding: 12px 15px;
+    border-radius: 50%;
+    border: 1px solid $primary-color;
+    &:hover{
+        color: $primary-color;
+        text-decoration: none;
+    }
+}
+.btn-pagination{
+    border: 1px solid #a1a1a1;
+    margin-bottom: 20px;
+}
+
+.btn-pagination + .btn-pagination{
+    margin-left: 10px;
+}
+/*About us*/
+
+.form{
+    border: 1px solid $primary-color;
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.user{
+    height: 100vh;
+}
+
+.nav-link{
+    border: 1px solid #a1a1a1;
+}
+
+
+.message {
+    width: 437px;
+    height: 437px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.54);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0px 0px 0 1px rgba(231, 231, 231, 0.43),
+      0 0 0 90px rgba(254, 254, 254, 0.54),
+      0px 0px 0 91px rgba(231, 231, 231, 0.11),
+      0px 0px 0 181px rgba(254, 254, 254, 0.45),
+      0px 0px 0 182px rgba(231, 231, 231, 0.36),
+      0px 0px 0 272px rgba(254, 254, 254, 0.45),
+      0px 0px 0 273px rgba(231, 231, 231, 0.13);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    .message-title {
+      font-family: 'Exo 2', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 50px;
+      line-height: 60px;
+      text-align: center;
+      letter-spacing: 0.4px;
+      color: #2a74db;
+      white-space: nowrap;
+    }
+    .message-text {
+      white-space: nowrap;
+      font-family: 'Exo 2', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 29px;
+      text-align: center;
+      letter-spacing: 0.4px;
+    }
+  }
+
+ 

@@ -21,10 +21,14 @@
     <span class="clock"><%= institution.clock_start %></span> -
     <span class="clock"><%= institution.clock_end %></span>
     </div>
-    <%= link_to "Read more ",institution_path(institution), :class => 'btn btn-menu ' %>
+    <%= link_to "Меню",institution_path(institution), :class => 'btn btn-menu ' %>
     
     </div>
     </div>
    </div>
 <% end %>
+</div>
+<div class="pagination d-flex justify-content-center align-items-center">
+<%= link_to "Минула сторiнка", institutions_path(page: @page - 1), :class => 'btn btn-pagination  ' %>
+<%= link_to "Наступна сторiнка", institutions_path(page: @page + 1), :class => 'btn btn-pagination' %>
 </div>

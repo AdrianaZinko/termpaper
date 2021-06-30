@@ -5,12 +5,27 @@ const adr= document.querySelector('.adr')
 const tbody=document.querySelector('.tbody')
 const modalBtn=document.querySelector('.btn-cart')
 const clocks =document.querySelectorAll('.clock')
+const order=document.querySelector('.order')
+const orderBtn=document.querySelector('.btn-order')
 let k=0 ,date=''
-for (let clock of clocks) {
-  console.log(clock.innerHTML.slice(11,16));
+for (let clock of clocks) { 
 date=clock.innerText.slice(11, 16)
 clock.innerHTML=date
 } 
+ 
+modalBtn.addEventListener('click', () => {
+  console.log('fd')
+  adr.classList.toggle('is-open')
+  })
+  orderBtn.addEventListener('click', () => {
+    console.log('fd')
+    order.classList.toggle('is-open') 
+    
+    setTimeout(function(){
+      
+      window.location.href = '/institutions?page=1';
+    }, 3 * 1000);
+  })
 btn.forEach(e => {
   e.addEventListener('click', (ev) => {
     //e.style.visibility="hidden"
@@ -26,7 +41,7 @@ btn.forEach(e => {
     const itemCart2 = `
     <tr class="basket__item">
     <td class="align-middle">${name}</td>
-    <td class="align-middle price text-end">${price} руб</td>
+    <td class="align-middle td-price text-end">${price} грн</td>
     <td class="align-middle count">
       <div class="input-group">
         <button type="button" class="btn btn-primary btn-minus">-</button>
@@ -34,7 +49,7 @@ btn.forEach(e => {
         <button type="button" class="btn btn-primary btn-plus">+</button>
       </div>
     </td>
-    <td class="align-middle text-end subtotal">${price} руб</td>
+    <td class="align-middle text-end subtotal">${price} грн</td>
   </tr>
      `;
 
@@ -64,7 +79,10 @@ const init = () => {
   })
    setTotalPrice(totalCost)
 }
-
+btn.forEach(e => {
+  e.addEventListener('click', (ev) => { 
+  init()
+})})
 const calculateSeparateItem = (basketItem, action) => {
     const input=basketItem.querySelector('.input')
     switch(action){
@@ -77,7 +95,7 @@ const calculateSeparateItem = (basketItem, action) => {
             setTotalPrice(+totalPriceWrapper.dataset.value - +input.dataset.price)
             break;
     }
-    basketItem.querySelector('.subtotal').textContent=`${formatNumber(getItemSubTotalPrice(input))} руб`
+    basketItem.querySelector('.subtotal').textContent=`${formatNumber(getItemSubTotalPrice(input))} грн`
 }
 
 document.getElementById('basket').addEventListener('click', (event) => {
@@ -96,8 +114,5 @@ init()
 })
 
 
-modalBtn.addEventListener('click', () => {
-  console.log('fd')
-  adr.classList.toggle('is-open')
-  })
+
 

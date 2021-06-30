@@ -1,58 +1,67 @@
 <h2><%= @institution.title %></h2>
 <div class="row">
-<% @institution.menus.each do |institution| %>
-   <div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-    <img src= <%= institution.photo %> />
-    <div class="card-body">
-    <p class="name"><%= institution.name %></p>
-    <p class="description"><%= institution.description %></p>
-    <p class="weight"><%= institution.weight %> г</p>
-    <div class="d-flex justify-content-between align-items-center">
-    <button class="btn buttons"><i class="fas fa-plus"></i></button>
-    <span class="price"><%= institution.price %> грн</span>
+    <% @institution.menus.each do |institution| %>
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <img src=<%= institution.photo %> />
+            <div class="card-body">
+                <p class="name"><%= institution.name %></p>
+                <p class="description"><%= institution.description %></p>
+                <p class="weight"><%= institution.weight %> г</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="btn buttons"><i class="fas fa-plus"></i></button>
+                    <span class="price"><%= institution.price %> </span>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-   </div>
-<% end %>
+    <% end %>
 </div>
 <button class="btn-cart"><i class="fas fa-shopping-cart"></i></button>
 
 
 <br><br>
-<div class="adr">
-        <div class="row">
-          <div class="col-10 offset-1">
+<div class="adr ">
+    <div class="row">
+        <div class="col-10 offset-1">
             <table class="table" id="basket">
-              <thead>
-                <tr>
-                   <th>Название</th>
-                   <th class="text-end">Стоимость</th>
-                   <th>Количество</th>
-                   <th class="text-end">Подытог</th>
-                </tr>
-              </thead>
-              <tbody class="tbody">
-                <tr class="basket__item">
-                  <td class="align-middle">Продукт 1</td>
-                  <td class="align-middle price text-end">1000 руб</td>
-                  <td class="align-middle count">
-                    <div class="input-group">
-                      <button type="button" class="btn btn-primary btn-minus">-</button>
-                      <input type="number" value="2" data-price="1000" class="form-control input text-center" disabled>
-                      <button type="button" class="btn btn-primary btn-plus">+</button>
-                    </div>
-                  </td>
-                  <td class="align-middle text-end subtotal">2000 руб</td>
-                </tr>
-                
-              </tbody>
+                <thead>
+                    <tr>
+                        <th class="text-center">Назва</th>
+                        <th class="text-center">Вартiсть</th>
+                        <th class="text-center">Кiлькiсть</th>
+                        <th class="text-center">Пiдсумок</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+
+
+                </tbody>
             </table>
-            <div class="total-price fw-bold text-end pr-2">Итог:<span class="total-price" id="total-price"></span> руб</div>
-          </div>
+            <div class="total-price fw-bold text-end pr-2">Всього: <span class="total-price" id="total-price"></span>
+                грн</div>
         </div>
-      </div>
+    </div> 
+<%= form_for :users, url: users_path do |f| %>
+    <p>
+    I&apos;мя <br>
+     <%= f.text_field(:name, {:class=> 'form-control'}) %>
+    </p>
+    <p>
+    Телефон<br>
+     <%= f.text_field(:phone, {:class=> 'form-control'}) %>
+    </p> 
+<% end %> 
+    <input class="favorite styled btn btn-order"
+    type="button"
+    value="Зберегти">
+</div>
+<div class="order">
+<div class="message"> 
+<p class="message-title">Замовлення прийнято!</p>
+<p class="message-text">Очiкуйте доставки</p>
+</div>
+</div>
 <br><br>
 <h2>Добавление новых постов:</h2>
 <%= form_for([@institution, @institution.menus.build]) do |f| %>
@@ -80,65 +89,4 @@
 <%= f.submit("Add",{:class=> 'btn btn-warning'}) %>
 </p>
 <% end %>
-
-<div class="modal modal-cart">
-    <div class="modal-dialog">
-        <div class="modal-header">
-            <h3 class="modal-title">Корзина</h3>
-            <button class="close">&times;</button>
-        </div>
-        <!-- /.modal-header -->
-        <div class="modal-body">
-            <div class="food-row">
-                <span class="food-name">Ролл угорь стандарт</span>
-                <strong class="food-price">250 ₽</strong>
-                <div class="food-counter">
-                    <button class="counter-button">-</button>
-                    <span class="counter">1</span>
-                    <button class="counter-button">+</button>
-                </div>
-            </div>
-            <!-- /.foods-row -->
-            <div class="food-row">
-                <span class="food-name">Ролл угорь стандарт</span>
-                <strong class="food-price">250 ₽</strong>
-                <div class="food-counter">
-                    <button class="counter-button">-</button>
-                    <span class="counter">1</span>
-                    <button class="counter-button">+</button>
-                </div>
-            </div>
-            <!-- /.foods-row -->
-            <div class="food-row">
-                <span class="food-name">Ролл угорь стандарт</span>
-                <strong class="food-price">250 ₽</strong>
-                <div class="food-counter">
-                    <button class="counter-button">-</button>
-                    <span class="counter">1</span>
-                    <button class="counter-button">+</button>
-                </div>
-            </div>
-            <!-- /.foods-row -->
-            <div class="food-row">
-                <span class="food-name">Ролл угорь стандарт</span>
-                <strong class="food-price">250 ₽</strong>
-                <div class="food-counter">
-                    <button class="counter-button">-</button>
-                    <span class="counter">1</span>
-                    <button class="counter-button">+</button>
-                </div>
-            </div>
-            <!-- /.foods-row -->
-        </div>
-        <!-- /.modal-body -->
-        <div class="modal-footer">
-            <span class="modal-pricetag">1250 ₽</span>
-            <div class="footer-buttons">
-                <button class="button button-primary">Оформить заказ</button>
-                <button class="button clear-cart">Отмена</button>
-            </div>
-        </div>
-        <!-- /.modal-footer -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+ 

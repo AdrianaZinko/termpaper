@@ -14,7 +14,7 @@
 
   <script>
     var script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAj-1B8CG7a-dyekv_aL3v3OeIvjeVwBJ0&callback=initMap';
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAXm5qa8IuXV2llbEkEy0DWSSKW5EJX9fA&callback=initMap';
     script.async = true;
 
 
@@ -38,22 +38,23 @@
 
 
     // Append the 'script' element to 'head'
-    // document.head.appendChild(script);
+     document.head.appendChild(script);
   </script>
 </head>
 
-<body>
+<body >
+
   <div
     class="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal ">Company name</h5>
+    <h5 class="my-0 mr-md-auto font-weight-normal "><%= link_to "A", home_path, :class => 'item-link logo' %></h5>
     <nav class="my-2 my-md-0 mr-md-3">
-      <span class="p-2 text-dark"><%= link_to "Главная страница", home_path %></span>
-      <span class="p-2 text-dark"><%= link_to "Add post", new_institution_path %></span>
-      <span class="p-2 text-dark"><%= link_to "About us", new_user_path %></span>
+      <span class="p-2 text-dark"><%= link_to "Главная страница", home_path,:class => 'item-link' %></span>
+      <span class="p-2 text-dark"><%= link_to "Add post", new_institution_path, :class => 'item-link' %></span>
+      <span class="p-2 text-dark"><%= link_to "About us", new_user_path, :class => 'item-link' %></span>
     </nav>
 
   </div>
-
+  
   <div class="container">
     <%= yield %>
   </div>
