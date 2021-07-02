@@ -2,8 +2,8 @@ class InstitutionsController < ApplicationController
     Max_page_size = 6
     def index
         # @institution=Institution.all  
-        @page = params.fetch(:page,0).to_i
-        @institution=Institution.offset(@page*Max_page_size).limit(Max_page_size)      
+        @page = params.fetch(:page,1).to_i
+        @institution=Institution.offset(@page*Max_page_size).limit(Max_page_size)
     end
     def new
     end

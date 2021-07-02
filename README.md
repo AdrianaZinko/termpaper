@@ -1,24 +1,4 @@
-# README
+# Веб сервіс замовлення та доставки кулінарних страв
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![Video-Gif](https://user-images.githubusercontent.com/48288630/124273561-d275dd00-db48-11eb-9feb-292dc12ac9f9.gif)

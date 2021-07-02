@@ -62,31 +62,3 @@
 <p class="message-text">Очiкуйте доставки</p>
 </div>
 </div>
-<br><br>
-<h2>Добавление новых постов:</h2>
-<%= form_for([@institution, @institution.menus.build]) do |f| %>
-<p>
-    Название <br>
-    <%= f.text_field(:name, {:class=> 'form-control'}) %>
-</p>
-<p>
-    Weight<br>
-    <%= f.text_field(:weight, {:class=> 'form-control'}) %>
-</p>
-<p>
-    price <br>
-    <%= f.text_field(:price, {:class=> 'form-control'}) %>
-</p>
-<p>
-    photo<br>
-    <%= f.text_field(:photo, {:class=> 'form-control'}) %>
-</p>
-<p>
-    description <br>
-    <%= f.text_field(:description, {:class=> 'form-control'}) %>
-</p>
-
-<%= f.submit("Add",{:class=> 'btn btn-warning'}) %>
-</p>
-<% end %>
- 

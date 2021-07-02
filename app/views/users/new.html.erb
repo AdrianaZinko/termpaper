@@ -2,16 +2,16 @@
 <div class="form mb-5">
 <%= form_for :users, url: users_path do |f| %>
     <p>
-    Название <br>
+    I&apos;мя <br>
      <%= f.text_field(:name, {:class=> 'form-control'}) %>
     </p>
     <p>
-    phone<br>
+    Номер телефона<br>
      <%= f.text_field(:phone, {:class=> 'form-control'}) %>
     </p>
     <p>
     
-     <%= f.submit({:class=> 'btn btn-success'}) %>
+     <%= f.submit('Зберегти',{:class=> 'btn btn-success'}) %>
     </p>
 <% end %>
 </div>
